@@ -1,10 +1,12 @@
+const _ = require('lodash');
+
 class Game {
 
   constructor() {
-    this.boardPositions = [];
     this.player = "player1";
     this.player1Positions = [];
     this.player2Positions = [];
+    this.winningCombination = [1, 2, 3]
   }
 
   addTurn(boardPosition) {
@@ -19,6 +21,13 @@ class Game {
 
   returnAllPositionsTaken() {
     return this.player1Positions.concat(this.player2Positions);
+  }
+
+  gameStatus() {
+    const player1 = this.player1Positions.sort()
+    if(_.isEqual(this.winningCombination, player1)) {
+      return "Player 1 wins!";
+    } 
   }
 }
 
