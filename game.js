@@ -25,9 +25,12 @@ class Game {
 
   gameStatus() {
     const player1 = this.player1Positions.sort()
+    const player2 = this.player2Positions.sort()
     if(_.isEqual(this.winningCombination, player1)) {
       return "Player 1 wins!";
-    } 
+    } else if(_.isEqual(this.winningCombination, player2)) {
+      return "Player 2 wins!"
+    }
   }
 }
 
