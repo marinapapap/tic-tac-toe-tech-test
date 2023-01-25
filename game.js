@@ -6,7 +6,7 @@ class Game {
     this.player = "player1";
     this.player1Positions = [];
     this.player2Positions = [];
-    this.winningCombination = [1, 2, 3]
+    this.winningCombination = [[1, 2, 3], [4, 5, 6]]
   }
 
   addTurn(boardPosition) {
@@ -26,11 +26,17 @@ class Game {
   gameStatus() {
     const player1 = this.player1Positions.sort()
     const player2 = this.player2Positions.sort()
-    if(_.isEqual(this.winningCombination, player1)) {
-      return "Player 1 wins!";
-    } else if(_.isEqual(this.winningCombination, player2)) {
-      return "Player 2 wins!"
-    }
+    let winner = "";
+
+    this.winningCombination.forEach(combo => {
+      if(_.isEqual(combo, player1)) {
+        console.log(combo);
+        winner = "Player 1 wins!";
+      } else if(_.isEqual(combo, player2)) {
+        winner = "Player 2 wins!";
+      }
+    });
+    return winner;
   }
 }
 

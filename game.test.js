@@ -67,4 +67,32 @@ describe("Game class", () => {
     expect(game.gameStatus()).toEqual("Player 2 wins!");
 
   })
+
+  it("returns 'Player 1 wins' if board positions are 4, 5 and 6", () => {
+    const game = new Game;
+
+    game.addTurn(4);
+    game.addTurn(1);
+    game.addTurn(5);
+    game.addTurn(2);
+    game.addTurn(6);
+
+    expect(game.gameStatus()).toEqual("Player 1 wins!");
+
+  })
+
+  it("returns 'Player 2 wins' if board positions are 4, 5 and 6", () => {
+    const game = new Game;
+
+    game.addTurn(1);
+    game.addTurn(4);
+    game.addTurn(2);
+    game.addTurn(5);
+    game.addTurn(7);
+    game.addTurn(6);
+
+    expect(game.gameStatus()).toEqual("Player 2 wins!");
+
+  })
+
 })
