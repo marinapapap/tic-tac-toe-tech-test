@@ -2,14 +2,23 @@ class Game {
 
   constructor() {
     this.boardPositions = [];
+    this.player = "player1";
+    this.player1Positions = [];
+    this.player2Positions = [];
   }
 
   addTurn(boardPosition) {
-    this.boardPositions.push(boardPosition);
+    if(this.player === "player1") {
+      this.player1Positions.push(boardPosition);
+      this.player = "player2";
+    } else if(this.player === "player2") {
+      this.player2Positions.push(boardPosition);
+      this.player = "player1";
+    }
   }
 
-  returnPositionsTaken() {
-    return this.boardPositions
+  returnAllPositionsTaken() {
+    return this.player1Positions.concat(this.player2Positions);
   }
 }
 
