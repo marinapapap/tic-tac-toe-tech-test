@@ -95,4 +95,17 @@ describe("Game class", () => {
 
   })
 
+  it("checked against an array of all possible combinations, 'Player 2 wins' is returned if board positions are 3, 5 and 7", () => {
+    const game = new Game;
+
+    game.addTurn(1);
+    game.addTurn(3);
+    game.addTurn(2);
+    game.addTurn(5);
+    game.addTurn(8);
+    game.addTurn(7);
+
+    expect(game.gameStatus()).toEqual("Player 2 wins!");
+
+  })
 })

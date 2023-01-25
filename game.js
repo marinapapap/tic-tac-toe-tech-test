@@ -6,7 +6,7 @@ class Game {
     this.player = "player1";
     this.player1Positions = [];
     this.player2Positions = [];
-    this.winningCombination = [[1, 2, 3], [4, 5, 6]]
+    this.winningCombination = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
   }
 
   addTurn(boardPosition) {
@@ -30,7 +30,6 @@ class Game {
 
     this.winningCombination.forEach(combo => {
       if(_.isEqual(combo, player1)) {
-        console.log(combo);
         winner = "Player 1 wins!";
       } else if(_.isEqual(combo, player2)) {
         winner = "Player 2 wins!";
