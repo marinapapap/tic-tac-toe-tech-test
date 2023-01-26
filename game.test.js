@@ -187,4 +187,46 @@ describe("Game class", () => {
     expect(game.gameStatus()).toEqual("Player 2 wins!");
 
   })
+
+  it("Returns 'No winners yet!'. Player 2 has the combination [2, 4, 6] where the difference between values is equal but its not a row.", () => {
+    const game = new Game;
+
+    game.addTurn(3);
+    game.addTurn(2);
+    game.addTurn(5);
+    game.addTurn(4);
+    game.addTurn(1);
+    game.addTurn(6);
+
+    expect(game.gameStatus()).toEqual("No winner yet!");
+
+  })
+
+  it("Returns 'No winners yet!'. Player 2 has the combination [4, 6, 8] where the difference between values is equal but its not a row.", () => {
+    const game = new Game;
+
+    game.addTurn(3);
+    game.addTurn(8);
+    game.addTurn(5);
+    game.addTurn(4);
+    game.addTurn(1);
+    game.addTurn(6);
+
+    expect(game.gameStatus()).toEqual("No winner yet!");
+
+  })
+
+  it("Returns 'No winners yet!'. Player 2 has the combination [1, 3, 5] where the difference between values is equal but its not a row.", () => {
+    const game = new Game;
+
+    game.addTurn(6);
+    game.addTurn(3);
+    game.addTurn(8);
+    game.addTurn(1);
+    game.addTurn(4);
+    game.addTurn(5);
+
+    expect(game.gameStatus()).toEqual("No winner yet!");
+
+  })
 })
