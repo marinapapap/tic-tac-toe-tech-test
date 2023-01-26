@@ -45,7 +45,7 @@ describe("Game class", () => {
     const game = new Game;
 
     game.addTurn(1);
-    game.addTurn(2);
+    game.addTurn(6);
     game.addTurn(2);
     game.addTurn(8);
     game.addTurn(3);

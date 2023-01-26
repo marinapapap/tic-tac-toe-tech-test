@@ -41,26 +41,33 @@ class Game {
     const player1 = this.player1Positions.sort();
     const player2 = this.player2Positions.sort();
  
-    for(let i = 1; i < (player1.length-1); i++) {
-      let combo1 = player1[i+1] - player1[i];
-      let combo2 = player1[i] - player1[i-1];
-      let thisHand = [player1[i-1], player1[i], player1[i+1]];
+    const player1Status = this.checkPlayerStatus(player1);
+    if(player1Status === "Player 1 wins!") {
+      return player1Status;
+    }
+  
+    const player2Status = this.checkPlayerStatus(player2);
+    if(player2Status === "Player 2 wins!") {
+      return player2Status;
+    }
+
+    return "No winner yet!"
+  }
+
+  checkPlayerStatus(player) {
+    for(let i = 1; i < (player.length-1); i++) {
+      let combo1 = player[i+1] - player[i];
+      let combo2 = player[i] - player[i-1];
+      let thisHand = [player[i-1], player[i], player[i+1]];
 
       if(combo1 === combo2 && !_.isEqual(thisHand, [4, 6, 8]) && !_.isEqual(thisHand, [2, 4, 6]) && !_.isEqual(thisHand, [1, 3, 5])) {
-        return "Player 1 wins!";
+        if(player === this.player1Positions.sort()) {
+          return "Player 1 wins!";
+        } else if (player === this.player2Positions.sort()) {
+          return "Player 2 wins!";
+        }
       } 
     };
-
-    for(let i = 1; i < (player2.length-1); i++) {
-      let combo1 = player2[i+1] - player2[i];
-      let combo2 = player2[i] - player2[i-1];
-      let thisHand = [player2[i-1], player2[i], player2[i+1]];
-
-      if (combo1 === combo2 && !_.isEqual(thisHand, [4, 6, 8]) && !_.isEqual(thisHand, [2, 4, 6]) && !_.isEqual(thisHand, [1, 3, 5])) {
-        return "Player 2 wins!";
-      }
-    }
-    return "No winner yet!"
   }
 }
 
