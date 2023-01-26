@@ -23,19 +23,32 @@ class Game {
     return this.player1Positions.concat(this.player2Positions);
   }
 
-  gameStatus() {
-    const player1 = this.player1Positions.sort()
-    const player2 = this.player2Positions.sort()
-    let winner = "";
+  // gameStatus() {
+  //   const player1 = this.player1Positions.sort();
+  //   const player2 = this.player2Positions.sort();
+  //   let winner = "";
 
-    this.winningCombination.forEach(combo => {
-      if(_.isEqual(combo, player1)) {
-        winner = "Player 1 wins!";
-      } else if(_.isEqual(combo, player2)) {
-        winner = "Player 2 wins!";
+  //   this.winningCombination.forEach(combo => {
+  //     if(_.isEqual(combo, player1)) {
+  //       winner = "Player 1 wins!";
+  //     } else if(_.isEqual(combo, player2)) {
+  //       winner = "Player 2 wins!";
+  //     }
+  //   });
+  //   return winner;
+  // }
+
+  gameStatus() {
+    const player1 = this.player1Positions.sort();
+    const player2 = this.player2Positions.sort();
+ 
+    for(let i = 1; i < (player1.length-1); i++) {
+      if(player1[i+1] - player1[i] === player1[i] - player1[i-1]) {
+        return "Player 1 wins!";
+      } else if (player2[i+1] - player2[i] === player2[i] - player2[i-1]) {
+        return "Player 2 wins!";
       }
-    });
-    return winner;
+    }
   }
 }
 
