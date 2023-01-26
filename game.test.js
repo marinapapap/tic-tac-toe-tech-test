@@ -95,7 +95,7 @@ describe("Game class", () => {
 
   })
 
-  it("checked against an array of all possible combinations, 'Player 2 wins' is returned if board positions are 3, 5 and 7", () => {
+  it("Returns 'Player 2 wins' if board positions are 3, 5 and 7", () => {
     const game = new Game;
 
     game.addTurn(1);
@@ -109,7 +109,7 @@ describe("Game class", () => {
 
   })
 
-  it("checked against an array of all possible combinations, 'Player 1 wins' is returned if board positions are 3, 5 and 7 after 4 turns", () => {
+  it("Returns 'Player 1 wins' if board positions are 3, 5 and 7 after 4 turns", () => {
     const game = new Game;
 
     game.addTurn(3);
@@ -124,7 +124,7 @@ describe("Game class", () => {
 
   })
 
-  it("checked against an array of all possible combinations, 'Player 2 wins' is returned if board positions are 3, 5 and 7 after 4 turns", () => {
+  it("Returns 'Player 2 wins' if board positions are 3, 5 and 7 after 4 turns", () => {
     const game = new Game;
 
     game.addTurn(2);
@@ -135,6 +135,54 @@ describe("Game class", () => {
     game.addTurn(2);
     game.addTurn(8);
     game.addTurn(7);
+
+    expect(game.gameStatus()).toEqual("Player 2 wins!");
+
+  })
+
+  it("Returns 'Player 2 wins' if board positions are 3, 5 and 7 after 4 turns. Player 1 has the combination [2, 4, 6] where the difference between values is equal but its not a row.", () => {
+    const game = new Game;
+
+    game.addTurn(2);
+    game.addTurn(3);
+    game.addTurn(4);
+    game.addTurn(5);
+    game.addTurn(9);
+    game.addTurn(2);
+    game.addTurn(6);
+    game.addTurn(7);
+
+    expect(game.gameStatus()).toEqual("Player 2 wins!");
+
+  })
+
+  it("Returns 'Player 2 wins' is returned if board positions are 3, 5 and 7 after 4 turns. Player 1 has the combination [4, 6, 8] where the difference between values is equal but its not a row.", () => {
+    const game = new Game;
+
+    game.addTurn(4);
+    game.addTurn(3);
+    game.addTurn(6);
+    game.addTurn(5);
+    game.addTurn(9);
+    game.addTurn(2);
+    game.addTurn(8);
+    game.addTurn(7);
+
+    expect(game.gameStatus()).toEqual("Player 2 wins!");
+
+  })
+
+  it("Returns 'Player 2 wins' if board positions are 7, 8 and 9 after 4 turns. Player 1 has the combination [1, 3, 5] where the difference between values is equal but its not a row.", () => {
+    const game = new Game;
+
+    game.addTurn(6);
+    game.addTurn(7);
+    game.addTurn(3);
+    game.addTurn(8);
+    game.addTurn(5);
+    game.addTurn(4);
+    game.addTurn(2);
+    game.addTurn(9);
 
     expect(game.gameStatus()).toEqual("Player 2 wins!");
 
