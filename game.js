@@ -45,7 +45,11 @@ class Game {
     for(let i = 1; i < (player1.length-1); i++) {
       if(player1[i+1] - player1[i] === player1[i] - player1[i-1]) {
         return "Player 1 wins!";
-      } else if (player2[i+1] - player2[i] === player2[i] - player2[i-1]) {
+      } 
+    };
+
+    for(let i = 1; i < (player2.length-1); i++) {
+      if (player2[i+1] - player2[i] === player2[i] - player2[i-1]) {
         return "Player 2 wins!";
       }
     }
