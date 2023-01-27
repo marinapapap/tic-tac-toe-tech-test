@@ -6,6 +6,7 @@ class Game {
     this.player = "player1";
     this.player1Positions = [];
     this.player2Positions = [];
+    this.winningCombinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
   }
 
   addTurn(boardPosition) {
@@ -22,52 +23,43 @@ class Game {
     return this.player1Positions.concat(this.player2Positions);
   }
 
-  // gameStatus() {
-  //   const player1 = this.player1Positions.sort();
-  //   const player2 = this.player2Positions.sort();
-  //   let winner = "";
-
-  //   this.winningCombination.forEach(combo => {
-  //     if(_.isEqual(combo, player1)) {
-  //       winner = "Player 1 wins!";
-  //     } else if(_.isEqual(combo, player2)) {
-  //       winner = "Player 2 wins!";
-  //     }
-  //   });
-  //   return winner;
-  // }
-
   gameStatus() {
     const player1 = this.player1Positions.sort();
     const player2 = this.player2Positions.sort();
- 
-    const player1Status = this.checkPlayerStatus(player1);
-    if(player1Status === "Player 1 wins!") {
-      return player1Status;
-    }
-  
-    const player2Status = this.checkPlayerStatus(player2);
-    if(player2Status === "Player 2 wins!") {
-      return player2Status;
-    }
+    let winner = "";
 
-    return "No winner yet!"
+    this.winningCombinations.forEach(combo => {
+      const player2Status = this.checkPlayerStatus(player2, combo, winner)
+      if (player2Status === "Player 2 wins!") {
+        winner = player2Status;
+      }
+      const player1Status = this.checkPlayerStatus(player1, combo, winner)
+      if (player1Status === "Player 1 wins!") {
+        winner = player1Status;
+      }
+    });
+    return this.winnerChecker(winner);
   }
 
-  checkPlayerStatus(player) {
-    for(let i = 1; i < (player.length-1); i++) {
-      let combo1 = player[i+1] - player[i];
-      let combo2 = player[i] - player[i-1];
-      let thisHand = [player[i-1], player[i], player[i+1]];
+  winnerChecker(winner) {
+    if(winner === "") {
+      return "No winner yet!";
+    } else {
+      return winner;
+    }
+  }
 
-      if(combo1 === combo2 && !_.isEqual(thisHand, [4, 6, 8]) && !_.isEqual(thisHand, [2, 4, 6]) && !_.isEqual(thisHand, [1, 3, 5])) {
+  checkPlayerStatus(player, combo) {
+    for(let i = 1; i < (player.length-1); i++) {
+      let thisHand = [player[i-1], player[i], player[i+1]];
+      if(_.isEqual(combo, thisHand)) {
         if(player === this.player1Positions.sort()) {
           return "Player 1 wins!";
         } else if (player === this.player2Positions.sort()) {
           return "Player 2 wins!";
         }
-      } 
-    };
+      }
+    }
   }
 }
 
