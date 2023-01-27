@@ -16,7 +16,7 @@ describe("Game class", () => {
     game.addTurn(3);
     game.addTurn(4);
 
-    expect(game.player1Positions).toEqual([1, 4]);
+    expect(game.playerXPositions).toEqual([1, 4]);
   })
 
   it("returns player 2's board positions", () => {
@@ -26,7 +26,7 @@ describe("Game class", () => {
     game.addTurn(3);
     game.addTurn(4);
 
-    expect(game.player2Positions).toEqual([3]);
+    expect(game.playerOPositions).toEqual([3]);
   })
 
   it("returns all board positions that have been taken by a player", () => {
@@ -50,7 +50,7 @@ describe("Game class", () => {
     game.addTurn(8);
     game.addTurn(3);
 
-    expect(game.gameStatus()).toEqual("Player 1 wins!");
+    expect(game.gameStatus()).toEqual("Player 'X' wins!");
 
   })
 
@@ -64,7 +64,7 @@ describe("Game class", () => {
     game.addTurn(9);
     game.addTurn(3);
 
-    expect(game.gameStatus()).toEqual("Player 2 wins!");
+    expect(game.gameStatus()).toEqual("Player 'O' wins!");
 
   })
 
@@ -77,7 +77,7 @@ describe("Game class", () => {
     game.addTurn(2);
     game.addTurn(6);
 
-    expect(game.gameStatus()).toEqual("Player 1 wins!");
+    expect(game.gameStatus()).toEqual("Player 'X' wins!");
 
   })
 
@@ -91,7 +91,7 @@ describe("Game class", () => {
     game.addTurn(7);
     game.addTurn(6);
 
-    expect(game.gameStatus()).toEqual("Player 2 wins!");
+    expect(game.gameStatus()).toEqual("Player 'O' wins!");
 
   })
 
@@ -105,7 +105,7 @@ describe("Game class", () => {
     game.addTurn(8);
     game.addTurn(7);
 
-    expect(game.gameStatus()).toEqual("Player 2 wins!");
+    expect(game.gameStatus()).toEqual("Player 'O' wins!");
 
   })
 
@@ -120,7 +120,7 @@ describe("Game class", () => {
     game.addTurn(2);
     game.addTurn(7);
 
-    expect(game.gameStatus()).toEqual("Player 1 wins!");
+    expect(game.gameStatus()).toEqual("Player 'X' wins!");
 
   })
 
@@ -136,7 +136,7 @@ describe("Game class", () => {
     game.addTurn(8);
     game.addTurn(7);
 
-    expect(game.gameStatus()).toEqual("Player 2 wins!");
+    expect(game.gameStatus()).toEqual("Player 'O' wins!");
 
   })
 
@@ -152,7 +152,7 @@ describe("Game class", () => {
     game.addTurn(2);
     game.addTurn(9);
 
-    expect(game.gameStatus()).toEqual("Player 2 wins!");
+    expect(game.gameStatus()).toEqual("Player 'O' wins!");
 
   })
 
@@ -170,7 +170,7 @@ describe("Game class", () => {
 
   })
 
-  it("throws error if the boardposition is already taken", () => {
+  it("Throws error if the boardposition is already taken.", () => {
 
     expect(() => {
       const game = new Game;
@@ -179,4 +179,5 @@ describe("Game class", () => {
       game.addTurn(3);
     }).toThrow('Position already taken!');
   })
+
 })

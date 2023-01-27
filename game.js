@@ -4,18 +4,18 @@ class Game {
 
   constructor() {
     this.player = "player1";
-    this.player1Positions = [];
-    this.player2Positions = [];
+    this.playerXPositions = [];
+    this.playerOPositions = [];
     this.winningCombinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
   }
 
   addTurn(boardPosition) {
     this.checkIfPositionIsFree(boardPosition);
     if(this.player === "player1") {
-      this.player1Positions.push(boardPosition);
+      this.playerXPositions.push(boardPosition);
       this.player = "player2";
     } else if(this.player === "player2") {
-      this.player2Positions.push(boardPosition);
+      this.playerOPositions.push(boardPosition);
       this.player = "player1";
     }
   }
@@ -27,22 +27,22 @@ class Game {
   }
 
   returnAllPositionsTaken() {
-    return this.player1Positions.concat(this.player2Positions);
+    return this.playerXPositions.concat(this.playerOPositions);
   }
 
   gameStatus() {
-    const player1 = this.player1Positions.sort();
-    const player2 = this.player2Positions.sort();
+    const playerX = this.playerXPositions.sort();
+    const playerO = this.playerOPositions.sort();
     let winner = "";
 
     this.winningCombinations.forEach(combo => {
-      const player2Status = this.checkPlayerStatus(player2, combo, winner)
-      if (player2Status === "Player 2 wins!") {
-        winner = player2Status;
+      const playerOStatus = this.checkPlayerStatus(playerO, combo, winner)
+      if (playerOStatus === "Player 'O' wins!") {
+        winner = playerOStatus;
       }
-      const player1Status = this.checkPlayerStatus(player1, combo, winner)
-      if (player1Status === "Player 1 wins!") {
-        winner = player1Status;
+      const playerXStatus = this.checkPlayerStatus(playerX, combo, winner)
+      if (playerXStatus === "Player 'X' wins!") {
+        winner = playerXStatus;
       }
     });
     return this.winnerChecker(winner);
@@ -60,10 +60,10 @@ class Game {
     for(let i = 1; i < (player.length-1); i++) {
       let thisHand = [player[i-1], player[i], player[i+1]];
       if(_.isEqual(combo, thisHand)) {
-        if(player === this.player1Positions.sort()) {
-          return "Player 1 wins!";
-        } else if (player === this.player2Positions.sort()) {
-          return "Player 2 wins!";
+        if(player === this.playerXPositions.sort()) {
+          return "Player 'X' wins!";
+        } else if (player === this.playerOPositions.sort()) {
+          return "Player 'O' wins!";
         }
       }
     }
