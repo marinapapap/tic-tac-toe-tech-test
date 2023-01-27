@@ -5,12 +5,13 @@ class GameStatus {
   constructor(playerX, playerO) {
     this.playerX = playerX;
     this.playerO = playerO;
+    this.winningCombinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
   }
 
-  checkingForWinners(winningCombinations) {
+  checkingForWinners() {
     let winner = "";
 
-    winningCombinations.forEach(combo => {
+    this.winningCombinations.forEach(combo => {
       const playerXStatus = this.checkPlayerStatus(this.playerX, combo)
       if (playerXStatus === "Player 'X' wins!") {
         winner = playerXStatus;
@@ -24,8 +25,10 @@ class GameStatus {
   }
 
   winnerChecker(winner) {
-    if(winner === "") {
+    if(winner === "" && this.playerO.length < 4) {
       return "No winner yet!";
+    } else if(winner === "") {
+      return "Game Over - no winner!"
     } else {
       return winner;
     }
