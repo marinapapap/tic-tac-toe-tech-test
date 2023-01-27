@@ -10,12 +10,19 @@ class Game {
   }
 
   addTurn(boardPosition) {
+    this.checkIfPositionIsFree(boardPosition);
     if(this.player === "player1") {
       this.player1Positions.push(boardPosition);
       this.player = "player2";
     } else if(this.player === "player2") {
       this.player2Positions.push(boardPosition);
       this.player = "player1";
+    }
+  }
+
+  checkIfPositionIsFree(boardPosition) {
+    if(this.returnAllPositionsTaken().includes(boardPosition)) {
+      throw new Error('Position already taken!');
     }
   }
 

@@ -132,7 +132,7 @@ describe("Game class", () => {
     game.addTurn(4);
     game.addTurn(5);
     game.addTurn(9);
-    game.addTurn(2);
+    game.addTurn(1);
     game.addTurn(8);
     game.addTurn(7);
 
@@ -168,5 +168,15 @@ describe("Game class", () => {
 
     expect(game.gameStatus()).toEqual("No winner yet!");
 
+  })
+
+  it("throws error if the boardposition is already taken", () => {
+
+    expect(() => {
+      const game = new Game;
+
+      game.addTurn(3);
+      game.addTurn(3);
+    }).toThrow('Position already taken!');
   })
 })
