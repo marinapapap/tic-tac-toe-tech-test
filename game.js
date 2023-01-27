@@ -3,10 +3,11 @@ const GameStatus = require('./gameStatus');
 
 class Game {
 
-  constructor() {
+  constructor(gameStatusClass) {
     this.player = "playerX";
     this.playerXPositions = [];
     this.playerOPositions = [];
+    this.gameStatusClass = gameStatusClass;
   }
 
   addTurn(boardPosition) {
@@ -34,8 +35,8 @@ class Game {
     const playerX = this.playerXPositions.sort();
     const playerO = this.playerOPositions.sort();
 
-    const gameStatus = new GameStatus(playerX, playerO);
-    const status = gameStatus.checkingForWinners();
+    const gameStatus = this.gameStatusClass;
+    const status = gameStatus.checkingForWinners(playerX, playerO);
     return status;
   }
 }
