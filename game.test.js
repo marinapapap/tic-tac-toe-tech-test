@@ -11,7 +11,7 @@ describe("Game class", () => {
       expect(game.returnAllPositionsTaken()).toEqual([1]);
     })
 
-    it("returns player 1's board positions", () => {
+    it("returns player X's board positions", () => {
       const game = new Game;
 
       game.addTurn(1);
@@ -21,7 +21,7 @@ describe("Game class", () => {
       expect(game.playerXPositions).toEqual([1, 4]);
     })
 
-    it("returns player 2's board positions", () => {
+    it("returns player O's board positions", () => {
       const game = new Game;
 
       game.addTurn(1);
@@ -42,11 +42,29 @@ describe("Game class", () => {
       expect(game.returnAllPositionsTaken().includes(5)).toEqual(true);
       expect(game.returnAllPositionsTaken().includes(6)).toEqual(true);
     })
+
+    it("returns 'Player 'X' wins' if board positions are 1, 2 and 3. GameStatus class is mocked", () => {
+      const gameStatusMock = {
+        checkingForWinners(playerX, playerO) {
+          return "Player 'X' wins!";
+        } 
+      };
+
+      const game = new Game(gameStatusMock);
+  
+      game.addTurn(1);
+      game.addTurn(6);
+      game.addTurn(2);
+      game.addTurn(8);
+      game.addTurn(3);
+  
+      expect(game.gameStatus()).toEqual("Player 'X' wins!");
+    })
   });
 
-  it("returns 'Player 1 wins' if board positions are 1, 2 and 3", () => {
-    const gameStatusClass = new GameStatus;
-    const game = new Game(gameStatusClass);
+  it("returns 'Player 'X' wins' if board positions are 1, 2 and 3", () => {
+    const gameStatus = new GameStatus;
+    const game = new Game(gameStatus);
 
     game.addTurn(1);
     game.addTurn(6);
@@ -57,9 +75,9 @@ describe("Game class", () => {
     expect(game.gameStatus()).toEqual("Player 'X' wins!");
   })
 
-  it("returns 'Player 2 wins' if board positions are 1, 2 and 3", () => {
-    const gameStatusClass = new GameStatus;
-    const game = new Game(gameStatusClass);
+  it("returns 'Player 'O' wins' if board positions are 1, 2 and 3", () => {
+    const gameStatus = new GameStatus;
+    const game = new Game(gameStatus);
 
     game.addTurn(4);
     game.addTurn(1);
@@ -72,9 +90,9 @@ describe("Game class", () => {
 
   })
 
-  it("returns 'Player 1 wins' if board positions are 4, 5 and 6", () => {
-    const gameStatusClass = new GameStatus;
-    const game = new Game(gameStatusClass);
+  it("returns 'Player 'X' wins' if board positions are 4, 5 and 6", () => {
+    const gameStatus = new GameStatus;
+    const game = new Game(gameStatus);
 
     game.addTurn(4);
     game.addTurn(1);
@@ -86,9 +104,9 @@ describe("Game class", () => {
 
   })
 
-  it("returns 'Player 2 wins' if board positions are 4, 5 and 6", () => {
-    const gameStatusClass = new GameStatus;
-    const game = new Game(gameStatusClass);
+  it("returns 'Player 'X' wins' if board positions are 4, 5 and 6", () => {
+    const gameStatus = new GameStatus;
+    const game = new Game(gameStatus);
 
     game.addTurn(1);
     game.addTurn(4);
@@ -101,9 +119,9 @@ describe("Game class", () => {
 
   })
 
-  it("Returns 'Player 2 wins' if board positions are 3, 5 and 7", () => {
-    const gameStatusClass = new GameStatus;
-    const game = new Game(gameStatusClass);
+  it("Returns 'Player 'O' wins' if board positions are 3, 5 and 7", () => {
+    const gameStatus = new GameStatus;
+    const game = new Game(gameStatus);
 
     game.addTurn(1);
     game.addTurn(3);
@@ -116,9 +134,9 @@ describe("Game class", () => {
 
   })
 
-  it("Returns 'Player 1 wins' if board positions are 3, 5 and 7 after 4 turns", () => {
-    const gameStatusClass = new GameStatus;
-    const game = new Game(gameStatusClass);
+  it("Returns 'Player 'X' wins' if board positions are 3, 5 and 7 after 4 turns", () => {
+    const gameStatus = new GameStatus;
+    const game = new Game(gameStatus);
 
     game.addTurn(3);
     game.addTurn(9);
@@ -132,9 +150,9 @@ describe("Game class", () => {
 
   })
 
-  it("Returns 'Player 2 wins' if board positions are 3, 5 and 7 after 4 turns", () => {
-    const gameStatusClass = new GameStatus;
-    const game = new Game(gameStatusClass);
+  it("Returns 'Player 'O' wins' if board positions are 3, 5 and 7 after 4 turns", () => {
+    const gameStatus = new GameStatus;
+    const game = new Game(gameStatus);
 
     game.addTurn(2);
     game.addTurn(3);
@@ -149,9 +167,9 @@ describe("Game class", () => {
 
   })
 
-  it("Returns 'Player 2 wins' if board positions are 7, 8 and 9 after 4 turns.", () => {
-    const gameStatusClass = new GameStatus;
-    const game = new Game(gameStatusClass);
+  it("Returns 'Player 'O' wins' if board positions are 7, 8 and 9 after 4 turns.", () => {
+    const gameStatus = new GameStatus;
+    const game = new Game(gameStatus);
 
     game.addTurn(1);
     game.addTurn(7);
@@ -167,8 +185,8 @@ describe("Game class", () => {
   })
 
   it("Returns 'No winners yet!'.", () => {
-    const gameStatusClass = new GameStatus;
-    const game = new Game(gameStatusClass);
+    const gameStatus = new GameStatus;
+    const game = new Game(gameStatus);
 
     game.addTurn(3);
     game.addTurn(2);
