@@ -48,13 +48,7 @@ Then write the following in the node REPL:
 ```
 
 You should now be able to create instances of both classes within the REPL. Bare in mind that each position
-on the board is represented by a value, as seen below.
-
- │ 1 │ 2 │ 3 │
- ├───┼───┼───┤
- │ 4 │ 5 │ 6 │
- ├───┼───┼───┤
- │ 7 │ 8 │ 9 │
+on the board is represented by a value, as seen in an image you can find in the main directory.
 
 If you want to take the top-left square, you need to input:
 
