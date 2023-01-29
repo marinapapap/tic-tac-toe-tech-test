@@ -14,8 +14,60 @@ The rules of tic tac toe are as follows:
 
 Build the business logic for a game of tic tac toe. It should be easy to implement a working game of tic tac toe by combining your code with any user interface, whether web or command line.
 
-## Class Framework
+## How To Install
 
-```javascript
+To download the program and it's dependencies, assuming you already have Node.js installed, write the following commands:
 
 ```
+git clone https://github.com/marinapapap/tic-tac-toe-tech-test.git
+
+cd tic-tac-toe-tech-test
+
+npm install
+```
+
+To run the tests, run the following command:
+
+```
+jest
+```
+
+## How to Use
+
+To run the program, open the node REPL using the following command:
+
+```
+node
+```
+
+Then write the following in the node REPL:
+
+```
+> const Game = require('./game');
+> const GameStatus = require('./gameStatus');
+```
+
+You should now be able to create instances of both classes within the REPL. Bare in mind that each position
+on the board is represented by a value, as seen below.
+
+ │ 1 │ 2 │ 3 │
+ ├───┼───┼───┤
+ │ 4 │ 5 │ 6 │
+ ├───┼───┼───┤
+ │ 7 │ 8 │ 9 │
+
+If you want to take the top-left square, you need to input:
+
+```
+game.addTurn(1);
+```
+
+As with the traditions of the game, the program assumes player 'X' goes first. Once a turn has been added, 
+it will automatically take the next turn to be player 'O'. After each turn, run the following command in the 
+node REPL to see the status of the game:
+
+```
+> console.log(game.gameStatus());
+```
+
+This will tell you when the game is over and if there have been any winners.
