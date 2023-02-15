@@ -16,7 +16,14 @@ Build the business logic for a game of tic tac toe. It should be easy to impleme
 
 ## How To Install
 
-To download the program and it's dependencies, assuming you already have Node.js installed, write the following commands:
+This guide assumes you have Node.js and npm already installed. To check if they are already installed, run:
+
+```
+node -v
+npm -v
+```
+
+To download Tic Tac Toe and it's dependencies, run the following commands:
 
 ```
 git clone https://github.com/marinapapap/tic-tac-toe-tech-test.git
